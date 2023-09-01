@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gradubtBackend',
 ]
 
 MIDDLEWARE = [
@@ -73,11 +75,54 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+rootID = 'gbt'
+rootPWD = os.environ.get('db_password')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'engg': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'enggDB',
+        'USER': rootID,
+        'PASSWORD': rootPWD,
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'business': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'businessDB',
+        'USER': rootID,
+        'PASSWORD': rootPWD,
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'social': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'socialDB',
+        'USER': rootID,
+        'PASSWORD': rootPWD,
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'arts': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'artsDB',
+        'USER': rootID,
+        'PASSWORD': rootPWD,
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'law': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lawDB',
+        'USER': rootID,
+        'PASSWORD': rootPWD,
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
 }
 
 
@@ -121,3 +166,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATABASE_ROUTERS = ['gradubtBackend.routers.EnggRouter']
