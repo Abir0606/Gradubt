@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# class UserProfile(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     pfp = models.ImageField(upload_to='pfp', default='pfp/default.png')
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    pfp = models.ImageField(upload_to='pfp/')
+    cover = models.ImageField(upload_to='cover/')
+
 
 class EnggModel(models.Model):
     name = models.CharField(max_length=100)
